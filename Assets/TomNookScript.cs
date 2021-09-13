@@ -20,6 +20,7 @@ public class TomNookScript : MonoBehaviour
     MoonOutro moonOutro;
     [SerializeField] Text questText;
     bool victoryTriggered = false;
+    [SerializeField] ParticleSystem ps;
 
 
     // Start is called before the first frame update
@@ -69,6 +70,7 @@ public class TomNookScript : MonoBehaviour
             sfx.PlayOneShot(scream);
             fpsMain.countingDown = false;
             questText.text = "";
+            ps.gameObject.SetActive(false);
         }
     }
 }

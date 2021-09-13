@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Sun_Temple/Scenes/DemoScene.unity
     guid: d8f213b28287d8b4dab42cf4a34f94e5
+  - enabled: 1
+    path: Assets/Scenes/GameOverScene.unity
+    guid: e41f7c6799e71f84aae752ae7ee25ef5
   m_configObjects: {}

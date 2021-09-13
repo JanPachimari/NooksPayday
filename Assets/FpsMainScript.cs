@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FpsMainScript : MonoBehaviour
 {
@@ -48,9 +49,13 @@ public class FpsMainScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (countingDown)
+        if (countingDown && timer > 0)
         {
             timer -= Time.deltaTime;
+        }
+        if (timer < 0)
+        {
+            SceneManager.LoadScene(2);
         }
         textTimer.text = timer.ToString("F2");
 
@@ -181,7 +186,7 @@ public class FpsMainScript : MonoBehaviour
                 sfx.PlayOneShot(newquest);
                 beeTriggered = true;
             }
-            textQuest.text = "Die Biene sagt:\n'Die Welt geht drauf, aber das ist mir egal. Ich möchte nur spielen. Um an mir vorbeizukommen, musst du mich in Schere-Stein-Papier besiegen.'\n\nDrücke 1 für Schere.\nDrücke 2 für Stein.\nDrücke 3 für Papier.";
+            textQuest.text = "Die Biene sagt:\n'Die Welt geht drauf, aber das ist mir egal. Ich möchte nur spielen. Um an mir vorbeizukommen, musst du die Zielscheibe mit einem der Fußbälle treffen!";
         }
         else if (other.gameObject.name == "MaisTrigger")
         {
@@ -239,67 +244,7 @@ public class FpsMainScript : MonoBehaviour
             Debug.Log("spotted by dog");
             timer -= 5 * Time.deltaTime;
         }
-        else if (other.gameObject.name == "BeeTrigger")
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                int enemyRandomTurn = Random.Range(0, 3);
-                if (enemyRandomTurn == 0)
-                {
-                    textQuest.text = "Du hast Schere gespielt.\nDie Biene hat ebenfalls Schere gespielt.\nProbiere es nochmal!\n\nDrücke 1 für Schere.\nDrücke 2 für Stein.\nDrücke 3 für Papier.";
-                }
-                else if (enemyRandomTurn == 1)
-                {
-                    textQuest.text = "Du hast Schere gespielt.\nDie Biene hat Stein gespielt und gewonnen.\nProbiere es nochmal!\n\nDrücke 1 für Schere.\nDrücke 2 für Stein.\nDrücke 3 für Papier.";
-                }
-                else
-                {
-                    textQuest.text = "Du hast Schere gespielt.\nDie Biene hat Papier gespielt. Gewonnen!\n\nDie Biene sagt:\n'Och menno. Jetzt habe ich keine Lust mehr zu spielen. Bruder muss los.'";
-                    Destroy(bee);
-                    Destroy(beeTrigger);
-                    sfx.PlayOneShot(questCompleted);
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                int enemyRandomTurn = Random.Range(0, 3);
-                if (enemyRandomTurn == 0)
-                {
-                    textQuest.text = "Du hast Stein gespielt.\nDie Biene hat Schere gespielt. Gewonnen!\n\nDie Biene sagt:\n'Och menno. Jetzt habe ich keine Lust mehr zu spielen. Bruder muss los.'";
-                    Destroy(bee);
-                    Destroy(beeTrigger);
-                    sfx.PlayOneShot(questCompleted);
-                }
-                else if (enemyRandomTurn == 1)
-                {
-                    textQuest.text = "Du hast Stein gespielt.\nDie Biene hat ebenfalls Stein gespielt.\nProbiere es nochmal!\n\nDrücke 1 für Schere.\nDrücke 2 für Stein.\nDrücke 3 für Papier.";
-                }
-                else
-                {
-                    textQuest.text = "Du hast Stein gespielt.\nDie Biene hat Papier gespielt und gewonnen.\nProbiere es nochmal!\n\nDrücke 1 für Schere.\nDrücke 2 für Stein.\nDrücke 3 für Papier.";
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                int enemyRandomTurn = Random.Range(0, 3);
-                if (enemyRandomTurn == 0)
-                {
-                    textQuest.text = "Du hast Papier gespielt.\nDie Biene hat Schere gespielt und gewonnen.\nProbiere es nochmal!\n\nDrücke 1 für Schere.\nDrücke 2 für Stein.\nDrücke 3 für Papier.";
-                }
-                else if (enemyRandomTurn == 1)
-                {
-                    sfx.PlayOneShot(questCompleted);
-                    textQuest.text = "Du hast Papier gespielt.\nDie Biene hat Stein gespielt. Gewonnen!\n\nDie Biene sagt:\n'Och menno. Jetzt habe ich keine Lust mehr zu spielen. Bruder muss los.'";
-                    Destroy(bee);
-                    Destroy(beeTrigger);
-                }
-                else
-                {
-                    textQuest.text = "Du hast Papier gespielt.\nDie Biene hat ebenfalls Papier gespielt.\nProbiere es nochmal!\n\nDrücke 1 für Schere.\nDrücke 2 für Stein.\nDrücke 3 für Papier.";
-                }
-            }
-            
-        }
+
     }
 
 }

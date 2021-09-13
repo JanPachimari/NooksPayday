@@ -186,7 +186,7 @@ public class FpsMainScript : MonoBehaviour
                 sfx.PlayOneShot(newquest);
                 beeTriggered = true;
             }
-            textQuest.text = "Die Biene sagt:\n'Die Welt geht drauf, aber das ist mir egal. Ich möchte nur spielen. Um an mir vorbeizukommen, musst du die Zielscheibe mit einem der Fußbälle treffen!";
+            textQuest.text = "Die Biene sagt:\n'Die Welt geht drauf, aber das ist mir egal. Ich möchte nur spielen. Um an mir vorbeizukommen, musst du die Zielscheibe mit einem der Fußbälle treffen!'";
         }
         else if (other.gameObject.name == "MaisTrigger")
         {
